@@ -3,8 +3,9 @@ const path = require('path');
 const hbs = require('hbs');
 const forecast = require('../../weather-app/utils/forecast');
 const geocode = require('../../weather-app/utils/geocode');
-console.log();
+
 const app = express();
+const port = process.env.PORT || 3000;
 //define paths for express config
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
@@ -71,6 +72,6 @@ app.get('*', (req, res) => {
     message: 'Page not found',
   });
 });
-app.listen(3000, () => {
-  console.log('Server is up!');
+app.listen(port, () => {
+  console.log('Server is up on ' + port);
 });

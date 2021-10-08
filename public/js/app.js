@@ -10,26 +10,24 @@ weatherForm.addEventListener('submit', (e) => {
   msgOne.textContent = '';
   msgTwo.textContent = 'Loading';
   const location = search.value;
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          msgOne.textContent = data.error;
-          msgTwo.textContent = '';
-          console.log(data.error);
-        } else {
-          msgOne.textContent = data.location;
-          msgTwo.textContent =
-            data.forecast.weather +
-            ', ' +
-            data.forecast.temperature +
-            '°C, feels like ' +
-            data.forecast.feelslike +
-            '°C';
-          console.log(data);
-        }
-      });
-    }
-  );
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        msgOne.textContent = data.error;
+        msgTwo.textContent = '';
+        console.log(data.error);
+      } else {
+        msgOne.textContent = data.location;
+        msgTwo.textContent =
+          data.forecast.weather +
+          ', ' +
+          data.forecast.temperature +
+          '°C, feels like ' +
+          data.forecast.feelslike +
+          '°C';
+        console.log(data);
+      }
+    });
+  });
   console.log(location);
 });
